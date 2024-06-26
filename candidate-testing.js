@@ -35,13 +35,36 @@ for (let i = 0; i < questions.length; i++) {
 
 function gradeQuiz(candidateAnswers) {
 
+let status = '';
+let score = 0;
+
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-console.log(`Your Answer: ${candidateAnswers} \nCorrect Answer: ${correctAnswers}`);
+//console.log(`Your Answer: ${candidateAnswers} \nCorrect Answer: ${correctAnswers}`);
 
+console.log(`\nCandidate Name: ${candidateName}`);
+for (let i =0; i < questions.length; i++) {
+  console.log(`${i+1}) ${questions[i]}`);
+  console.log(`Your Answer: ${candidateAnswers[i]}`);
+  console.log(`Correct Answer: ${correctAnswers[i]}\n`);
+}
 
+for (let i = 0; i < questions.length; i++) {
+  if (candidateAnswers[i].toUpperCase() === correctAnswers[i].toUpperCase()) {
+    score ++
+  }
+}
 
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
+  let grade = score / questions.length * 100;  //TODO 3.2 use this variable to calculate the candidates score.
+for (let i = 0; i < questions.length; i++) {
+  if (grade >= 80) {
+    status = 'Pass'
+  } else {
+    status = 'Failed'
+  }
+}
 
+console.log(`>>> Overall Grade: ${grade}% (${score} of ${questions.length} responses correct) <<<`);
+console.log(`>>> Status: ${status} <<<`);
 
   return grade;
 }
